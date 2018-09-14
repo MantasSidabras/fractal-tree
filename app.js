@@ -17,7 +17,7 @@ function setup() {
 	sliderAngle.position(20, 20);
 	sliderBound = createSlider(1, 100, 2, 1);
 	sliderBound.position(20, 40);
-	sliderScale = createSlider(0.1, 0.7, 0.65, 0.05);
+	sliderScale = createSlider(0.1, 0.7, 0.5, 0.05);
 	sliderScale.position(20, 60);
 	// createCanvas(600, 600);
 }
@@ -31,7 +31,7 @@ function draw() {
 	background(50);
 	strokeWeight(2);
 	stroke(255);
-	translate(width / 2, (height * 4) / 5);
+	translate(width / 2, (height * 3) / 5);
 	push();
 	rotate(-angle);
 	branch(len);
@@ -50,11 +50,14 @@ function branch(len) {
 		line(0, 0, 0, -len);
 		translate(0, -len);
 		push();
-		rotate(angle);
+		rotate(-angle);
 		branch(len * lenScale);
 		pop();
 		push();
-		rotate(-angle);
+		branch(len * lenScale);
+		pop();
+		push();
+		rotate(angle);
 		branch(len * lenScale);
 		pop();
 	}
